@@ -62,8 +62,9 @@ cc_library(
         "ROS_PACKAGE_NAME=\\\"tracetools\\\"",
         "tracetools_EXPORTS",
     ],
+    #linkopts = ["-Wl,--allow-shlib-undefined"], # Fix this!
     deps = [
-        "@lttng-ust//:lttng-ust-project",
+        "@lttng-ust//:lttng-ust",
     ],
 )
 
@@ -71,7 +72,6 @@ cc_library(
     name = "tracetools_status",
     srcs = ["src/status.c"],
     deps = [
-        "@lttng-ust",
         ":tracetools",
     ],
 )
@@ -82,8 +82,6 @@ cc_binary(
     name = "status",
     srcs = ["src/status_tool.c"],
     deps = [
-        "@lttng-ust",
-        ":tracetools",
         ":tracetools_status",
     ],
 )
@@ -97,7 +95,6 @@ cc_test(
     deps = [
         "@googletest//:gtest",
         "@googletest//:gtest_main",
-        "@lttng-ust",
         ":tracetools",
         ":tracetools_status",
     ],

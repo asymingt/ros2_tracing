@@ -38,10 +38,6 @@ cmake_configure_file(
         "TRACETOOLS_DISABLED=1",
         "TRACETOOLS_TRACEPOINTS_EXCLUDED=1",
     ],
-    # undefines = [
-    #     "TRACETOOLS_DISABLED",
-    #     "TRACETOOLS_TRACEPOINTS_EXCLUDED",
-    # ],
 )
 
 # Libraries
@@ -58,11 +54,7 @@ cc_library(
         "include/**/*.hpp"
     ]),
     includes = ["include"],
-    local_defines = [
-        "ROS_PACKAGE_NAME=\\\"tracetools\\\"",
-        "tracetools_EXPORTS",
-    ],
-    #linkopts = ["-Wl,--allow-shlib-undefined"], # Fix this!
+    local_defines = ["ROS_PACKAGE_NAME=\\\"tracetools\\\""],
     deps = [
         "@lttng-ust//:lttng-ust",
     ],

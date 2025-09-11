@@ -16,7 +16,7 @@
 # Imports
 
 load("@cmake_configure_file//:cmake_configure_file.bzl", "cmake_configure_file")
-load("@ros//cc:defs.bzl", "generate_ros_version_defines")
+load("@ament_cmake_gen_version_h//:macros.bzl", "generate_ros_version_defines")
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
 package(default_visibility = ["//visibility:public"])
@@ -25,7 +25,7 @@ package(default_visibility = ["//visibility:public"])
 
 cmake_configure_file(
     name = "version_h",
-    src = "@ros//cc:version.h.in",
+    src = "@ament_cmake_gen_version_h//cmake:version.h.in",
     out = "include/tracetools/version.h",
     defines = generate_ros_version_defines(),
 )
